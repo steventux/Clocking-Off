@@ -1,0 +1,10 @@
+<%= form.error_messages %>
+
+<dl>
+  <dt><%= label_tag "Job Name" %></dt>
+  <dd><%= form.text_field :name %></dd>
+  <dt><%= label_tag "Start Time" %></dt>
+  <dd><%= time_select "event", :start_at %></dd>
+  <dt><%= label_tag "End Time" %></dt>
+  <dd><%= time_select "event", :end_at %></dd>
+</dl>

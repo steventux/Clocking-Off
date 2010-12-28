@@ -1,0 +1,6 @@
+<div>
+  <h1><%= @event.name %></h1>
+  <p>Starts:&nbsp;<%= @event.start_at.to_s(:long) %></p>
+  <p>Ends:&nbsp;<%= @event.end_at.to_s(:long) %></p>
+  <%= link_to "Close", calendar_path %>
+</div>

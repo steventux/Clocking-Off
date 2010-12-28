@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clocking Off - Timekeeper</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "livepipe" %>
+  <%= javascript_include_tag "window" %>
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag "event_calendar" %>
+  <%= stylesheet_link_tag "window" %>
+</head>
+<body>
+
+<%= yield %>
+
+<div id="modal"></div>
+
+</body>
+</html>
