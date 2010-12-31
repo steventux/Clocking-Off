@@ -5,8 +5,11 @@ class Event < ActiveRecord::Base
 
   has_event_calendar
 
+  belongs_to :project
+
   validates_presence_of :name
   validates_presence_of :start_at
+  validates_numericality_of :project_id
   validates_with EventValidator
 
   #scope :for_date, lambda { |date|

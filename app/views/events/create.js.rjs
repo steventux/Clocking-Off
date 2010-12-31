@@ -1,0 +1,7 @@
+if @saved
+  page << "var modal = Control.Modal.current\n" +
+    "modal.close()\n" +
+    "window.location.reload(true)"
+else
+  page.replace_html 'modal', :partial => 'new'
+end

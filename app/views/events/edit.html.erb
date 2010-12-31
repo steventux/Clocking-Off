@@ -1,5 +1,7 @@
-<h1>Edit <%= @event.name %></h1>
-<%= form_for @event, :url => event_path(@event.id), :method => :post do |form| -%>
-<%= render :partial => 'form', :object => form %>
-<%= form.submit "Update" %>
-<% end -%>
+<div>
+  <h1>Edit <%= @event.name %></h1>
+  <%= form_for @event, :url => event_path(@event.id), :method => :post do |form| -%>
+  <%= render :partial => 'form', :object => form %>
+  <%= form.submit "Update" %>
+  <% end -%>
+</div>

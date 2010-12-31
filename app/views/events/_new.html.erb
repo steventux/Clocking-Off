@@ -1,5 +1,7 @@
-<h1>New Job</h1>
-<%= form_for :event, :url => events_path(params[:date]), :method => :post do |form| -%>
-<%= render :partial => 'form', :object => form %>
-<%= form.submit "Save" %>
-<% end -%>
+<div>
+  <h1>New Job</h1>
+  <%= form_for :event, :url => events_path(params[:date]), :method => :post, :remote => true do |form| -%>
+  <%= render :partial => 'form', :object => form %>
+  <%= form.submit "Save" %>
+  <% end -%>
+</div>

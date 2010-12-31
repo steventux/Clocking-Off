@@ -2,19 +2,24 @@ require 'test_helper'
 
 class CalendarControllerTest < ActionController::TestCase
 
+  include Devise::TestHelpers
+
   context "The CalendarController" do
 
     context "day action" do
       setup do
+        @user = User.make
+        sign_in @user
+        @project = Project.make
         10.times do
           start_hour = rand(12)
-          end_hour = start_hour + rand(12)
+          end_hour = start_hour + 1 + rand(11)
           Event.make(:start_at => Time.local(2010,12,25,start_hour,rand(60)),
             :end_at => Time.local(2010,12,25,end_hour,rand(60)))
         end
         5.times do
           start_hour = rand(12)
-          end_hour = start_hour + rand(12)
+          end_hour = start_hour + 1 + rand(11)
           Event.make(:start_at => Time.local(2010,12,26,start_hour,rand(60)),
             :end_at => Time.local(2010,12,26,end_hour,rand(60)))
         end

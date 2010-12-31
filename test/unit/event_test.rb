@@ -4,6 +4,7 @@ class EventTest < ActiveSupport::TestCase
 
   should validate_presence_of :name
   should validate_presence_of :start_at
+  should validate_numericality_of :project_id
 
   context "An Event instance" do
     should "validate the start time is before the end time" do

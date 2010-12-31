@@ -1,6 +1,6 @@
 class EventValidator < ActiveModel::Validator
   def validate(record)
-    record.errors[:base] << "This event can't start after it finishes." unless check_event_times(record)
+    record.errors[:base] << "This event must finish after it starts." unless check_event_times(record)
   end
 
   private

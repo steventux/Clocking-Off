@@ -8,18 +8,16 @@ class EventsController < ApplicationController
 
   def new
     now = Time.now
+    @projects = Project.all
     @event = Event.new(
       :start_at => Time.local(@year, @month, @day, now.hour, now.min),
-      :end_at => Time.local(@year, @month, @day, now.hour < 12 ? now.hour + 8 : now.hour + 4, now.min))
+      :end_at => Time.local(@year, @month, @day, now.hour, now.min))
   end
 
   def create
+    @projects = Project.all
     @event = Event.new params[:event]
-    if @event.save
-      redirect_to calendar_path(@date.year, @date.month)
-    else
-      render :action => :new
-    end
+    @saved = @event.save
   end
 
   def edit
