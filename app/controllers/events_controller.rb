@@ -17,6 +17,7 @@ class EventsController < ApplicationController
   def create
     @projects = Project.all
     @event = Event.new params[:event]
+    @event.user = current_user
     @saved = @event.save
   end
 

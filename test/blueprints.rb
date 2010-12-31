@@ -24,6 +24,7 @@ Client.blueprint do
 end
 
 Event.blueprint do
+  user { User.make }
   name
   project { Project.make }
   start_at { Time.local(2010,12,25,10,30) }
