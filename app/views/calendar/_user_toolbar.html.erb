@@ -1,0 +1,4 @@
+<ul class="user-toolbar">
+  <li>Logged in as <%= current_user.email %></li>
+  <li><%= link_to "Log out", destroy_user_session_path %></li>
+</ul>

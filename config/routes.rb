@@ -1,5 +1,7 @@
 ClockingOff::Application.routes.draw do
 
+  root :to => "calendar#index"
+
   devise_for :users
 
   resources :projects
