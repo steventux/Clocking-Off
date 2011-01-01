@@ -10,15 +10,8 @@ class Event < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :start_at
-  validates_numericality_of :user_id
-  validates_numericality_of :project_id
+  validates_numericality_of :user_id, :with => "must belong to a user"
+  validates_numericality_of :project_id, :with => "must belong to a project"
   validates_with EventValidator
-
-  #scope :for_date, lambda { |date|
-  #  date = Date.parse date_str unless date.kind_of? Date
-  #  start_of_day = Time.local(date.year, date.month, date.day, 0, 0)
-  #  end_of_day = Time.local(date.year, date.month, date.day, 23, 59, 59)
-  #  where("start_at > ? AND end_at < ?", start_of_day.to_s(:db), end_of_day.to_s(:db)).order("start_at")
-  #}
 
 end

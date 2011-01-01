@@ -1,3 +1,4 @@
+<%= render :partial => 'shared/modal_toolbar' %>
 <div>
   <h1>Edit <%= @project.name %></h1>
   <%= form_for @project, :url => project_path(@project.to_param), :method => :post, :remote => true do |form| -%>

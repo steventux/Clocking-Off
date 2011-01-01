@@ -1,16 +1,22 @@
 <%= form.error_messages %>
 
-<dl>
-  <dt><%= label_tag "Name" %></dt>
-  <dd><%= form.text_field :name %></dd>
-  <dt><%= form.label :client_id %><br />
-  <dd>
-  <% if @clients.nil? or @clients.empty? -%>
-    <%= link_to "Manage Clients", clients_path, :remote => true %>
-  <% else -%>
-    <%= form.select :client_id, @clients.map { |c| [c.name, c.id] } %>
-  <% end -%>
-  </dd>
-  <dt><%= label_tag "Description" %></dt>
-  <dd><%= form.text_area :description %></dd>
-</dl>
+<p>
+  <%= label_tag "Name: " %>
+  <%= form.text_field :name %>
+</p>
+<p>
+  <%= label_tag "Client: " %>
+<% if @clients.nil? or @clients.empty? -%>
+  <%= link_to "Manage Clients", clients_path, :remote => true %>
+<% else -%>
+  <%= form.select :client_id, @clients.map { |c| [c.name, c.id] } %>
+<% end -%>
+</p>
+<p>
+  <%= label_tag "Rate: " %>
+  <%= form.text_field :rate, :size => 5 %>
+</p>
+<p>
+  <%= label_tag "Description" %>
+  <%= form.text_area :description %>
+</p>

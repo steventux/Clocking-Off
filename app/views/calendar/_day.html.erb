@@ -1,3 +1,4 @@
+<%= render :partial => 'shared/modal_toolbar' %>
 <div>
   <h1>Work for <%= Time.local(params[:year], params[:month], params[:day]).strftime("%A %d %B %Y") %></h1>
 
@@ -6,6 +7,5 @@
     <li><%= event_time event %> | <%= event.name %></li>
   <% end -%>
   </ol>
-  <%= link_to "Add", new_event_path("#{params[:year]}-#{params[:month]}-#{params[:day]}"), :remote => true %>
-  <%= link_to "Close", calendar_path(params[:year], params[:month]) %>
+  <%= link_to "+ Add", new_event_path("#{params[:year]}-#{params[:month]}-#{params[:day]}"), :remote => true %>
 </div>

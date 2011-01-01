@@ -1,5 +1,6 @@
 == Clocking Off
 Rails 3 Timekeeper app using devise and event_calendar.
+Optimised for Firefox & Chrome.
 
 == Roadmap
 Google Calendar API hookup

@@ -1,18 +1,24 @@
 <%= form.error_messages %>
 
-<dl>
-  <dt><%= label_tag "Job Name" %></dt>
-  <dd><%= form.text_field :name %></dd>
-  <dt><%= label_tag "Project" %></dt>
-  <dd>
+<p>
+  <%= label_tag "Job Name: " %>
+  <%= form.text_field :name %>
+</p>
+<p>
+  <%= label_tag "Reference: " %>
+  <%= form.text_field :reference %>
+</p>
+<p>
+  <%= label_tag "Project: " %>
   <% if @projects.nil? or @projects.empty? -%>
     <%= link_to "Manage Projects", projects_path, :remote => true %>
   <% else -%>
     <%= form.select :project_id, @projects.map { |p| [p.name, p.id] } %>
   <% end -%>
-  </dd>
-  <dt><%= label_tag "Start Time" %></dt>
-  <dd><%= time_select "event", :start_at %></dd>
-  <dt><%= label_tag "End Time" %></dt>
-  <dd><%= time_select "event", :end_at %></dd>
-</dl>
+</p>
+<p>
+  <%= label_tag "Start Time: " %><%= time_select "event", :start_at %>
+</p>
+<p>
+  <%= label_tag "End Time: " %><%= time_select "event", :end_at %>
+</p>

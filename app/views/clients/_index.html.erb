@@ -1,3 +1,4 @@
+<%= render :partial => 'shared/modal_toolbar' %>
 <h1>Listing clients</h1>
 
 <table>
@@ -22,5 +23,4 @@
 
 <br />
 
-<%= link_to 'New Client', new_client_path, :remote => true %>
-<a href="#" onclick="Control.Modal.current.close(); return false;">Close</a>
+<%= link_to '+ Add Client', new_client_path, :remote => true %>

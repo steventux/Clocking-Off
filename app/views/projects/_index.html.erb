@@ -1,3 +1,4 @@
+<%= render :partial => 'shared/modal_toolbar' %>
 <h1>Listing projects</h1>
 
 <table>
@@ -24,5 +25,4 @@
 
 <br />
 
-<%= link_to 'New Project', new_project_path, :remote => true %>
-<a href="#" onclick="Control.Modal.current.close(); return false;">Close</a>
+<%= link_to '+ Add Project', new_project_path, :remote => true %>
