@@ -32,7 +32,8 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
-    @event.destroy!
+    @event.destroy
+    @events = Event.all
   end
 
   private

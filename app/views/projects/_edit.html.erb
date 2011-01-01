@@ -1,0 +1,9 @@
+<div>
+  <h1>Edit <%= @project.name %></h1>
+  <%= form_for @project, :url => project_path(@project.to_param), :method => :post, :remote => true do |form| -%>
+  <%= render :partial => 'form', :object => form %>
+  <%= form.submit "Update" %>
+  <% end -%>
+  <%= link_to 'Show', project_path(@project.to_param), :remote => true %>
+  <%= link_to 'Back', projects_path, :remote => true %>
+</div>

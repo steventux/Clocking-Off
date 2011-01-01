@@ -1,0 +1,5 @@
+if @saved
+  page.replace_html 'modal', :partial => 'index'
+else
+  page.replace_html 'modal', :partial => 'new'
+end

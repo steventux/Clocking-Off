@@ -1,0 +1,9 @@
+<div>
+  <h1>Edit <%= @client.name %></h1>
+  <%= form_for @client, :url => client_path(@client.to_param), :method => :post, :remote => true do |form| -%>
+  <%= render :partial => 'form', :object => form %>
+  <%= form.submit "Update" %>
+  <% end -%>
+  <%= link_to 'Show', client_path(@client.to_param), :remote => true %>
+  <%= link_to 'Back', clients_path, :remote => true %>
+</div>

@@ -1,29 +1,16 @@
-<%= form_for(@project) do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+<%= form.error_messages %>
 
-      <ul>
-      <% @project.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :client_id %><br />
-    <%= f.select :client_id, @clients.map { |c| [c.name, c.id] } %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<dl>
+  <dt><%= label_tag "Name" %></dt>
+  <dd><%= form.text_field :name %></dd>
+  <dt><%= form.label :client_id %><br />
+  <dd>
+  <% if @clients.nil? or @clients.empty? -%>
+    <%= link_to "Manage Clients", clients_path, :remote => true %>
+  <% else -%>
+    <%= form.select :client_id, @clients.map { |c| [c.name, c.id] } %>
+  <% end -%>
+  </dd>
+  <dt><%= label_tag "Description" %></dt>
+  <dd><%= form.text_area :description %></dd>
+</dl>

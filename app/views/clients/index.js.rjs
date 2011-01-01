@@ -1,0 +1,4 @@
+page.replace_html 'modal', :partial => 'index'
+page << "
+var modal = Control.Modal.current ? Control.Modal.current : new Control.Modal($('modal'),{ overlayOpacity: 0.75, className: 'modal', fade: true })
+modal.open()"

@@ -4,7 +4,13 @@
   <dt><%= label_tag "Job Name" %></dt>
   <dd><%= form.text_field :name %></dd>
   <dt><%= label_tag "Project" %></dt>
-  <dd><%= form.select :project_id, @projects.map { |p| [p.name, p.id] } %></dd>
+  <dd>
+  <% if @projects.nil? or @projects.empty? -%>
+    <%= link_to "Manage Projects", projects_path, :remote => true %>
+  <% else -%>
+    <%= form.select :project_id, @projects.map { |p| [p.name, p.id] } %>
+  <% end -%>
+  </dd>
   <dt><%= label_tag "Start Time" %></dt>
   <dd><%= time_select "event", :start_at %></dd>
   <dt><%= label_tag "End Time" %></dt>
