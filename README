@@ -1,8 +1,12 @@
 == Clocking Off
 Rails 3 Timekeeper app using devise and event_calendar.
 Optimised for Firefox & Chrome.
+For Client/Project/Event (i.e. job event) management.
+
+Currently uses SQLite.
 
 == Roadmap
+Couch DB distributed option
 Google Calendar API hookup
 Android Time Card Export/Import doodads
 Invoicing?

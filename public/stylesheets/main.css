@@ -54,10 +54,14 @@ ul.toolbar li a, ul.user-toolbar li a { font-weight:bold; text-decoration: none;
 /* Modal window */
 #modal { width:420px; min-height:220px; }
 .modal { border:4px solid #c0c0c0 !important; border-radius: 8px; }
+.modal h1 { font-size: 1.9em; }
 .modal label { display:block; clear:left; width:80px; float:left; font-weight:bold; }
 .modal input, .modal textarea { border:1px solid #666 }
 .modal textarea { height:80px; width:280px }
 
 .modal-toolbar { height:12px; width: 100%; }
 .modal-toolbar .close a { float:right; display:block; height: 16px; width: 12px; color:#fff; background: #999; padding-left:4px; font-weight:bold; }
+
+.modal table { width: 100%; }
+.modal th { background: #4d8174; color: #fff; border-radius: 4px; }
 

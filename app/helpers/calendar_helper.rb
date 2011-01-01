@@ -25,8 +25,14 @@ module CalendarHelper
     end
   end
 
+  def event_hours(event)
+    hours = (event.end_at - event.start_at) / 60 / 60
+    hours = hours.to_i if hours % 1 == 0
+    "#{hours} hrs"
+  end
+
   def event_time(event)
-    "#{event.start_at.hour}.#{event.start_at.min}-#{event.end_at.hour}.#{event.end_at.min}"
+    "#{event.start_at.hour}.#{event.start_at.min}-#{event.end_at.hour}.#{event.end_at.min} (#{event_hours(event)})"
   end
 
 end

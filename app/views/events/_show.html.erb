@@ -2,7 +2,7 @@
 <div>
   <h1><%= @event.name %></h1>
   <p>Project:&nbsp;<%= @event.project.name %></p>
-  <p>Starts:&nbsp;<%= @event.start_at.to_s(:long) %></p>
-  <p>Ends:&nbsp;<%= @event.end_at.to_s(:long) %></p>
-  <%= link_to "Close", calendar_path %>
+  <p>Started:&nbsp;<%= @event.start_at.to_s(:long) %></p>
+  <p>Ended:&nbsp;<%= @event.end_at.to_s(:long) %></p>
+  <p>Duration:&nbsp;<%= event_hours @event %></p>
 </div>
