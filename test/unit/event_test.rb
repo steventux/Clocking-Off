@@ -16,4 +16,38 @@ class EventTest < ActiveSupport::TestCase
     end
   end
 
+  context "The Event class" do
+    context "when using the scope 'for_user'" do
+      setup do
+        @me = User.make
+        @another_user = User.make
+        @my_event = Event.make(:name => "Mine", :user => @me)
+        @their_event = Event.make(:name => "Theirs", :user => @another_user)
+        @my_events = Event.for_user(@me)
+        @their_events = Event.for_user(@another_user)
+      end
+      should "return events belonging to the given user" do
+        assert !@my_events.empty?
+        assert_equal @my_events.first, @my_event
+        assert !@their_events.empty?
+        assert_equal @their_events.first, @their_event
+      end
+    end
+
+    context "when using the scope 'on_date'" do
+      setup do
+        @xmas_dinner = Event.make(:start_at => Time.local(2010,12,25,12,0), :end_at => Time.local(2010,12,25,14,0))
+        @boxing_day_sandwiches = Event.make(:start_at => Time.local(2010,12,26,12,0), :end_at => Time.local(2010,12,26,14,0))
+        @xmas_events = Event.on_date(Date.parse('2010-12-25'))
+        @boxing_day_events = Event.on_date(Date.parse('2010-12-26'))
+      end
+      should "return events occurring on the given date" do
+        assert !@xmas_events.empty?
+        assert_equal @xmas_events.first, @xmas_dinner
+        assert !@boxing_day_events.empty?
+        assert_equal @boxing_day_events.first, @boxing_day_sandwiches
+      end
+    end
+  end
+
 end

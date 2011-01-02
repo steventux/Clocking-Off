@@ -1,11 +1,23 @@
 <%= render :partial => 'shared/modal_toolbar' %>
 <div>
-  <h1>Work for <%= Time.local(params[:year], params[:month], params[:day]).strftime("%A %d %B %Y") %></h1>
-
-  <ol>
-  <% @events.each do |event| -%>
-    <li><%= event_time event %> | <%= event.name %></li>
-  <% end -%>
-  </ol>
+  <h1>Work for <%= full_date %></h1>
+  <table>
+    <tr>
+      <th>Hours</th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+    <% @events.each do |event| -%>
+    <tr>
+      <td><%= event_time event %></td>
+      <td><%= event.name %></td>
+      <td>
+        <%= link_to "Show", event_path(event), :remote => true %>&nbsp;
+        <%= link_to "Edit", edit_event_path(event), :remote => true %>&nbsp;
+        <%= link_to "Destroy", event_path(event), :method => :delete, :remote => true %>
+      </td>
+    </tr>
+    <% end -%>
+  </table>
   <%= link_to "+ Add", new_event_path("#{params[:year]}-#{params[:month]}-#{params[:day]}"), :remote => true %>
 </div>

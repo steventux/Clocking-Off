@@ -11,7 +11,7 @@ class CalendarHelperTest < ActionView::TestCase
       end
 
       should "format the event start and end time" do
-        assert_equal "10.40-12.55", event_time(@event)
+        assert_equal "10.40-12.55 (2.25 hrs)", event_time(@event)
       end
 
     end

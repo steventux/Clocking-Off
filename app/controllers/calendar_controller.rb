@@ -6,13 +6,11 @@ class CalendarController < ApplicationController
 
     @shown_month = Date.civil(@year, @month)
 
-    @event_strips = Event.event_strips_for_month(@shown_month)
+    @event_strips = Event.for_user(current_user).event_strips_for_month(@shown_month)
   end
 
   def day
-    start_of_day = Time.local(params[:year], params[:month], params[:day], 0, 0)
-    end_of_day = Time.local(params[:year], params[:month], params[:day], 23, 59, 59)
-    @events = Event.where("start_at > ? AND end_at < ?", start_of_day.to_s(:db), end_of_day.to_s(:db)).order("start_at")
+    @events = Event.for_user(current_user).on_date(Time.local(params[:year], params[:month], params[:day]))
   end
 
 end

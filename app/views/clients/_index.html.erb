@@ -6,17 +6,17 @@
     <th>Name</th>
     <th>Description</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @clients.each do |client| %>
   <tr>
     <td><%= client.name %></td>
     <td><%= client.description %></td>
-    <td><%= link_to 'Show', client, :remote => true %></td>
-    <td><%= link_to 'Edit', edit_client_path(client), :remote => true %></td>
-    <td><%= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete, :remote => true %></td>
+    <td>
+      <%= link_to 'Show', client, :remote => true %>&nbsp;
+      <%= link_to 'Edit', edit_client_path(client), :remote => true %>&nbsp;
+      <%= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete, :remote => true %>
+    </td>
   </tr>
 <% end %>
 </table>

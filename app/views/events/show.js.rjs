@@ -1,3 +1,6 @@
 page.replace_html 'modal', :partial => 'show'
-page << "var modal = new Control.Modal($('modal'),{ overlayOpacity: 0.75, className: 'modal', fade: true })\n" +
-  "modal.open()"
+page << "
+if (!Control.Modal.current) {
+  var modal = new Control.Modal($('modal'),{ overlayOpacity: 0.75, className: 'modal', fade: true })
+  modal.open()
+}"

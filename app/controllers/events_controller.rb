@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-  before_filter :parse_date_param, :except => :show
+  before_filter :parse_date_param, :only => [:new, :create]
 
   def show
     @event = Event.find(params[:id])
@@ -27,13 +27,14 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.update_attributes params[:event]
+    @saved = @event.update_attributes params[:event]
+    @events = Event.for_user(current_user).on_date(@event.start_at) if @saved
   end
 
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    @events = Event.all
+    @events = Event.for_user(current_user).on_date(@event.start_at)
   end
 
   private

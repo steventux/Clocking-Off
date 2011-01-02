@@ -27,12 +27,20 @@ module CalendarHelper
 
   def event_hours(event)
     hours = (event.end_at - event.start_at) / 60 / 60
-    hours = hours.to_i if hours % 1 == 0
+    hours = hours % 1 == 0 ? hours.to_i : "%.2f" % hours
     "#{hours} hrs"
   end
 
   def event_time(event)
     "#{event.start_at.hour}.#{event.start_at.min}-#{event.end_at.hour}.#{event.end_at.min} (#{event_hours(event)})"
+  end
+
+  def full_date
+    now = Time.now
+    year = params[:year] || @year || now.year
+    month = params[:month] || @month || now.month
+    day = params[:day] || @day || now.day
+    Time.local(year, month, day).strftime("%A %d %B %Y")
   end
 
 end

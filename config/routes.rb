@@ -8,6 +8,8 @@ ClockingOff::Application.routes.draw do
 
   resources :clients
 
+  resources :events, :except => [:new, :create]
+
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar,
     :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 
@@ -15,7 +17,7 @@ ClockingOff::Application.routes.draw do
     :constraints => {:year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/}
 
   scope '(:date)', :date => /\d{4}-\d{2}-\d{1,2}/ do
-    resources :events
+    resources :events, :only => [:new, :create]
   end
 
   # The priority is based upon order of creation:
