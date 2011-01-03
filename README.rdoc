@@ -1,13 +1,18 @@
 == Clocking Off
 Rails 3 Timekeeping web application for managing timesheets, clients and projects.
+
 Featuring devise and event_calendar gems.
+
 Modal UI optimised for Firefox & Chrome.
 
 Currently uses SQLite.
 
 == Roadmap
 Couch DB distributed option
+
 Google Calendar API hookup
+
 Android Time Card Export/Import doodads
+
 Invoicing?
 
