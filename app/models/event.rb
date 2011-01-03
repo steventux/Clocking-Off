@@ -15,6 +15,7 @@ class Event < ActiveRecord::Base
   validates_with EventValidator
 
   scope :for_user, lambda { |user| where("user_id = ?", user.id).order("start_at") }
+  scope :for_client, lambda { |client| joins(:project => :client).where("clients.id = ?", client.id).order("start_at") }
   scope :on_date, lambda { |date|
     start_of_day = Time.local(date.year, date.month, date.day, 0, 0)
     end_of_day = Time.local(date.year, date.month, date.day, 23, 59, 59)
@@ -25,5 +26,9 @@ class Event < ActiveRecord::Base
     end_time = Time.local(args.last.year, args.last.month, args.last.day, 23, 59, 59)
     where("start_at > ? AND end_at < ?", start_time.to_s(:db), end_time.to_s(:db)).order("start_at")
   }
+
+  def hours
+    (end_at - start_at) / 60 / 60
+  end
 
 end

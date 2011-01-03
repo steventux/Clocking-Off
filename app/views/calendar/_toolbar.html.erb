@@ -2,3 +2,11 @@
   <li><%= link_to "Manage Clients", clients_path, :remote => true %></li>
   <li><%= link_to "Manage Projects", projects_path, :remote => true %></li>
 </ul>
+<%= form_tag '/timesheet' do -%>
+<ul class="toolbar">
+  <li>Timesheet from:&nbsp;<%= calendar_date_select_tag "ts_start_date", @ts_start_date.to_s %></li>
+  <li>to:&nbsp;<%= calendar_date_select_tag "ts_end_date", @ts_end_date.to_s %></li>
+  <li>Client:&nbsp;<%= select_tag "client", options_for_select(@clients.map{|c|[c.name,c.id]}) %></li>
+  <li><%= submit_tag "Go" %></li>
+</ul>
+<% end -%>

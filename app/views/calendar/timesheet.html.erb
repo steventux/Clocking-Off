@@ -1,0 +1,40 @@
+<%
+  headings = []
+  projects = []
+  hours = {}
+  @ts_start_date.upto(@ts_end_date) do |date|
+    date_str = date.strftime("%D")
+    headings << date_str
+    hours[date_str] = {}
+    @events_hash[date_str].each do |event|
+      project_name = event.project.name
+      projects << project_name
+      hours[date_str][project_name] = 0.00 if hours[date_str][project_name].nil?
+      hours[date_str][project_name] += event.hours
+    end unless @events_hash[date_str].nil?
+  end
+-%>
+<div class="timesheet">
+  <h1>Timesheet</h1>
+  <p><span class="label">From:</span><%= @ts_start_date.to_s(:full) %></p>
+  <p><span class="label">To:</span><%= @ts_end_date.to_s(:full) %></p>
+  <p><span class="label">Client:</span><%= @client.name %></p>
+  <table>
+    <tr>
+    <% headings.each do |heading| -%>
+      <th><%= heading %></th>
+    <% end -%>
+    </tr>
+    <% projects.each do |project| -%>
+    <tr>
+    <% headings.each do |date_str| -%>
+      <td>
+      <% hours[date_str].each do |p_key| -%>
+        <%= project == p_key ? hours[date_str][project] : "" %>
+      <% end unless hours[date_str].nil? -%>
+      </td>
+    <% end -%>
+    </tr>
+    <% end -%>
+  </table>
+</div>

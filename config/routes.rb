@@ -10,6 +10,8 @@ ClockingOff::Application.routes.draw do
 
   resources :events, :except => [:new, :create]
 
+  match '/timesheet' => 'calendar#timesheet'
+
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar,
     :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 

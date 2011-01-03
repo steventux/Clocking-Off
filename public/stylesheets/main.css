@@ -47,9 +47,9 @@ h1 { font: 2.5em bold Georgia; color:#4d8174; }
 /* Header & Toolbar */
 div.calendar-header { overflow:hidden; height:100px; padding-bottom:8px; margin-bottom:8px; background:url(/images/timeclock.jpg) no-repeat; padding-left:90px; border-bottom: 1px solid #4d8174; }
 div.calendar-header h1 { float:left }
-ul.toolbar, ul.user-toolbar { float:right; margin-top: 18px; list-style:none; }
-ul.toolbar li, ul.user-toolbar li { float:left; margin-left:20px; }
-ul.toolbar li a, ul.user-toolbar li a { font-weight:bold; text-decoration: none; color: #4d8174; }
+ul.toolbar { float:right; margin-top: 18px; list-style:none; }
+ul.toolbar li { float:left; margin-left:20px; }
+ul.toolbar li a { font-weight:bold; text-decoration: none; color: #4d8174; }
 
 /* Modal window */
 #modal { width:420px; min-height:220px; }
@@ -64,4 +64,7 @@ ul.toolbar li a, ul.user-toolbar li a { font-weight:bold; text-decoration: none;
 
 .modal table { width: 100%; }
 .modal th { background: #4d8174; color: #fff; border-radius: 4px; }
+
+/* Timesheet */
+.timesheet p span.label { font-weight:bold; margin-right:6px; }
 
