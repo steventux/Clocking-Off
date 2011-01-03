@@ -40,10 +40,12 @@ class EventsController < ApplicationController
   private
 
   def parse_date_param
-    @date = Date.parse params[:date]
-    @year = @date.year
-    @month = @date.month
-    @day = @date.day
+    if params[:date]
+      @date = Date.parse params[:date]
+      @year = @date.year
+      @month = @date.month
+      @day = @date.day
+    end
   end
 
 end
