@@ -70,5 +70,6 @@ ul.toolbar li a { font-weight:bold; text-decoration: none; color: #4d8174; }
 .timesheet table { width:100%; border:1px solid #666; border-radius: 4px;  }
 .timesheet table th { background: #4d8174; color: #fff; border-radius: 4px; }
 .timesheet table th.project-heading { width:20%; }
-.timesheet table td { text-align: center; }
+.timesheet table td.project-name { font-weight: bold; }
+.timesheet table td { border:1px solid #666; border-radius: 3px; text-align: center; }
 

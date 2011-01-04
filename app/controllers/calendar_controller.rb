@@ -14,15 +14,18 @@ class CalendarController < ApplicationController
   end
 
   def timesheet
-    @ts_start_date = Date.parse(params[:ts_start_date])
-    @ts_end_date = Date.parse(params[:ts_end_date])
-    @client = Client.find(params[:client])
-    @events_hash = {}
-    Event.for_user(current_user).for_client(@client).between(@ts_start_date, @ts_end_date).each do |event|
-      key = event.start_at.strftime("%D")
-      @events_hash[key] = [] if @events_hash[key].nil?
-      @events_hash[key] << event
-    end
+    start_date = Date.parse(params[:ts_start_date])
+    end_date = Date.parse(params[:ts_end_date])
+    client = Client.find(params[:client])
+    @timesheet = Timesheet.new(current_user, client, start_date, end_date)
+  end
+
+  def print_timesheet
+    start_date = Date.parse(params[:start_date])
+    end_date = Date.parse(params[:end_date])
+    client = Client.find(params[:client])
+    @timesheet = Timesheet.new(current_user, client, start_date, end_date)
+    render :layout => false
   end
 
 end

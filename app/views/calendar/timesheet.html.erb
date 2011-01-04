@@ -1,46 +1,36 @@
-<%
-  headings = []
-  projects = []
-  hours = {}
-  total_hours = 0.00
-  @ts_start_date.upto(@ts_end_date) do |date|
-    date_str = date.strftime("%D")
-    headings << date_str
-    hours[date_str] = {}
-    @events_hash[date_str].each do |event|
-      project_name = event.project.name
-      projects << project_name unless projects.include?(project_name)
-      hours[date_str][project_name] = 0.00 if hours[date_str][project_name].nil?
-      hours[date_str][project_name] += event.hours
-      total_hours += event.hours
-    end unless @events_hash[date_str].nil?
-  end
--%>
 <div class="timesheet">
   <h1>Timesheet</h1>
-  <p><span class="label">From:</span><%= @ts_start_date.to_s %></p>
-  <p><span class="label">To:</span><%= @ts_end_date.to_s %></p>
-  <p><span class="label">Client:</span><%= @client.name %></p>
+  <p>
+    <span class="label">From:</span><%= @timesheet.start_date.strftime("%d/%m/%Y") %>
+    &nbsp;&nbsp;&nbsp;
+    <span class="label">To:</span><%= @timesheet.end_date.strftime("%d/%m/%Y") %>
+  </p>
+  <p><span class="label">Client:</span><%= @timesheet.client.name %></p>
   <table>
     <tr>
       <th class="project-heading">Project</th>
-    <% headings.each do |heading| -%>
+    <% @timesheet.headings.each do |heading| -%>
       <th><%= heading %></th>
     <% end -%>
+      <th>Total</th>
     </tr>
-    <% projects.each do |project| -%>
+    <% @timesheet.hours.keys.sort.each do |project_name| -%>
     <tr>
-      <td><%= project %></td>
-      <% headings.each do |date_str| -%>
-      <td>
-        <%= "%.3f" % hours[date_str][project] unless hours[date_str][project].nil? -%>
-      </td>
+      <td class="project-name"><%= project_name %></td>
+      <% @timesheet.start_date.upto(@timesheet.end_date) do |date| -%>
+      <%
+        date_key = date.strftime("%d-%m-%y")
+        hours = @timesheet.hours[project_name][date_key]
+      -%>
+      <td><%= hours ? "%.3f" % hours : "" %></td>
       <% end -%>
+      <td><%= "%.3f" % @timesheet.project_hours[project_name] %></td>
     </tr>
     <% end -%>
     <tr>
-      <td colspan="<%= headings.size - 1 %>"></td>
-      <td colspan="2">Total:&nbsp;<%= "%.3f" % total_hours %> hours</td>
+      <td colspan="<%= @timesheet.headings.size + 1 %>"></td>
+      <td>Total:&nbsp;<%= "%.3f" % @timesheet.total_hours %> hours</td>
     </tr>
   </table>
+  <p><%= link_to "Printable version", timesheet_print_path(:client => @timesheet.client.to_param, :start_date => @timesheet.start_date.to_s, :end_date => @timesheet.end_date.to_s) %></p>
 </div>

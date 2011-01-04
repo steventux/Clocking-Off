@@ -1,0 +1,45 @@
+<%
+  start_date = @timesheet.start_date.strftime("%d-%m-%Y")
+  end_date = @timesheet.end_date.strftime("%d-%m-%Y")
+  heading = "Timesheet (#{@timesheet.client.name}, #{start_date} to #{end_date})"
+-%>
+<html>
+  <head>
+    <title><%= heading %></title>
+  </head>
+  <body style="font: 12pt normal arial, helvetica">
+    <h1 style="font-size:18pt;"><%= heading %></h1>
+    <p>
+      <span style="font-weight:bold">From:&nbsp;</span><%= start_date %>&nbsp;&nbsp;&nbsp;
+      <span style="font-weight:bold">To:&nbsp;</span><%= end_date %>
+    </p>
+    <p><span style="font-weight:bold">Client:&nbsp;</span><%= @timesheet.client.name %></p>
+
+    <table width="90%">
+      <tr>
+        <th style="width:4cm; border: 1px solid #333; background:#999;">Project</th>
+      <% @timesheet.headings.each do |heading| -%>
+        <th style="border: 1px solid #333; background:#999"><%= heading %></th>
+      <% end -%>
+        <th style="border: 1px solid #333; background:#999">Total</th>
+      </tr>
+      <% @timesheet.hours.keys.sort.each do |project_name| -%>
+      <tr>
+        <td style="border: 1px solid #333; text-align:center;"><%= project_name %></td>
+        <% @timesheet.start_date.upto(@timesheet.end_date) do |date| -%>
+        <%
+          date_key = date.strftime("%d-%m-%y")
+          hours = @timesheet.hours[project_name][date_key]
+        -%>
+        <td style="border: 1px solid #333;text-align:center"><%= hours ? "%.3f" % hours : "" %></td>
+        <% end -%>
+        <td style="border: 1px solid #333;text-align:center"><%= "%.3f" % @timesheet.project_hours[project_name] %></td>
+      </tr>
+      <% end -%>
+      <tr>
+        <td style="border: 1px solid #333;text-align:center" colspan="<%= @timesheet.headings.size + 1 %>"></td>
+        <td style="border: 1px solid #333;text-align:center">Total:&nbsp;<%= "%.3f" % @timesheet.total_hours %> hours</td>
+      </tr>
+    </table>
+  </body>
+</html>
