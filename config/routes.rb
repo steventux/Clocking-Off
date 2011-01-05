@@ -19,7 +19,7 @@ ClockingOff::Application.routes.draw do
   match '/calendar(/:year(/:month(/:day)))' => 'calendar#day', :as => :calendar_day,
     :constraints => {:year => /\d{4}/, :month => /\d{1,2}/, :day => /\d{1,2}/}
 
-  scope '(:date)', :date => /\d{4}-\d{2}-\d{1,2}/ do
+  scope '(:date)', :date => /\d{4}-\d{1,2}-\d{1,2}/ do
     resources :events, :only => [:new, :create]
   end
 
