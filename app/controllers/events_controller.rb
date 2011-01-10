@@ -22,6 +22,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @projects = Project.all
     @event = Event.find(params[:id])
   end
 
